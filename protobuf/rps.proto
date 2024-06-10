@@ -4,16 +4,16 @@ option go_package = "github.com/aadi-1024/rps/protobuf";
 package protobuf;
 
 enum Moves {
-  Rock = 1;
-  Paper = 2;
-  Scissors = 3;
-  Quit = 4;
+  Rock = 0;
+  Paper = 1;
+  Scissors = 2;
+  Quit = 3;
 }
 
 enum Result {
-  Win = 1;
-  Lose = 2;
-  Draw = 3;
+  Win = 0;
+  Lose = 1;
+  Draw = 2;
 }
 
 service Game {
@@ -21,7 +21,10 @@ service Game {
 }
 
 message Action {
+  Moves move = 1;
+}
+
+message Response {
   string msg = 1;
-  Moves move = 2;
-  Result res = 3;
+  Result res = 2;
 }
