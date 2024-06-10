@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = "github.com/aadi-1024/rps/protobuf";
+package protobuf;
+
+enum Moves {
+  Rock = 1;
+  Paper = 2;
+  Scissors = 3;
+  Quit = 4;
+}
+
+enum Result {
+  Win = 1;
+  Lose = 2;
+  Draw = 3;
+}
+
+service Game {
+  rpc PlayMove(Action) returns (Response) {}
+}
+
+message Action {
+  string msg = 1;
+  Moves move = 2;
+  Result res = 3;
+}
