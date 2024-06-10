@@ -21,7 +21,8 @@ service Game {
 }
 
 message Action {
-  Moves move = 1;
+  int32 player_id = 1;
+  Moves move = 2;
 }
 
 message Response {
