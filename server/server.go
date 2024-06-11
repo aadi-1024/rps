@@ -11,13 +11,23 @@ type Player struct {
 	res  chan protobuf.Result
 }
 
+func newPlayer() Player {
+	return Player{
+		make(chan protobuf.Moves),
+		make(chan protobuf.Result),
+	}
+}
+
 type GameServer struct {
 	p1, p2 Player
 	protobuf.UnimplementedGameServer
 }
 
 func NewGameServer() (GameServer, func()) {
-	g := GameServer{}
+	g := GameServer{
+		p1: newPlayer(),
+		p2: newPlayer(),
+	}
 	f := func() {
 		wins_against := map[protobuf.Moves]protobuf.Moves{
 			protobuf.Moves_Rock:     protobuf.Moves_Scissors,
